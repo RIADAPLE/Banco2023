@@ -35,7 +35,7 @@ public class Guepardo extends Felino{
                 "Altura: \t\t" + altura + '\n'+
                 "Largo: \t\t\t" + largo + '\n'+
                 "Peso: \t\t\t" + peso + '\n'+
-                "NombreCientifico: " + nombreCientifico + '\n' +
+                "Nombre Científico: " + nombreCientifico + '\n' +
                 '\n';
     }
 }

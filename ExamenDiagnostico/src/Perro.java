@@ -38,7 +38,7 @@ public class Perro extends Canino{
                 "Largo: \t\t\t" + largo + '\n'+
                 "Peso: \t\t\t" + peso + '\n' +
                 "Fuerza de Mordida: " + fuerzaMordida + '\n'+
-                "NombreCientifico: " + nombreCientifico + '\n' +
+                "Nombre Científico: " + nombreCientifico + '\n' +
                 "Tamaño de Colmillos: " + tamanoColmillos + '\n'+
                 '\n';
     }

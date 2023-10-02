@@ -41,7 +41,7 @@ public class Lobo extends Canino{
                 "Num. Camada: \t" + numCamada + '\n'+
                 "Especie Lobo: \t" + especieLobo + '\n' +
                 "Tamaño de Colmillos: " + tamanoColmillos + '\n'+
-                "NombreCientifico: " + nombreCientifico + '\n' +
+                "Nombre Científico: " + nombreCientifico + '\n' +
                 '\n';
     }
 }

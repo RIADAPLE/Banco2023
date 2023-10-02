@@ -42,8 +42,8 @@ public class Leon extends Felino{
                 "Altura: \t\t" + altura + '\n' +
                 "Largo: \t\t\t" + largo + '\n' +
                 "Peso: \t\t\t" + peso + '\n' +
+                "Nombre Científico: " + nombreCientifico + '\n' +
                 "Potencia Rugido Decibel: " + potenciaRugidoDecibel + '\n' +
-                "Nombre Cientifico: " + nombreCientifico + '\n' +
                 '\n';
     }
 }
