@@ -41,10 +41,11 @@ public class Main {
                 System.out.println("¡Tenemos un perro!");
                 System.out.println(mamifero);
             }
-            mamifero.comer();
-            mamifero.dormir();
-            mamifero.correr();
-            mamifero.comunicarse();
+            System.out.println(mamifero.comer());
+            System.out.println(mamifero.dormir());
+            System.out.println(mamifero.correr());
+            System.out.println(mamifero.comunicarse());
+
         }
     }
 }
