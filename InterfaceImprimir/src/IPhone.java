@@ -4,5 +4,11 @@ public class IPhone extends Electronico{
 
     public double getPrecioVenta() {
 
+        return 0;
+    }
+
+    @Override
+    public int getPrecio() {
+        return 0;
     }
 }

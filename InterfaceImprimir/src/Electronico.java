@@ -1,4 +1,4 @@
-public abstract class Electronico implements IElectronico {
+public abstract class Electronico implements IElectronico, IProducto {
 
     private String fabricante;
     @Override
