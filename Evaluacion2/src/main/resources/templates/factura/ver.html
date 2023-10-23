@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${titulo}"></title>
+    <h3 th:utext="${factura.descripcion}"></h3>
+    <div>
+        Cliente: <span
+            th:utext="${factura.cliente.nombre + ' ' + factura.cliente.apellido}"></span>
+    </div>
+    <h4>Detalle de la factura completa</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="item: ${factura.items}">
+                <td th:text="${item.producto.nombre}"></td>
+                <td th:text="${item.producto.precio}"></td>
+                <td th:text="${item.cantidad}"></td>
+                <td th:text="${item.calcularImporte()}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <h3>Total</h3>
+    <h3 th:utext="${factura.getTotal()}"></h3>
+    <h4>Detalle de la factura de cuidado corporal</h4>
+    <table>
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="itemcorporal: ${factura.itemsCorporal}">
+            <td th:text="${itemcorporal.producto.nombre}"></td>
+            <td th:text="${itemcorporal.producto.precio}"></td>
+            <td th:text="${itemcorporal.cantidad}"></td>
+            <td th:text="${itemcorporal.calcularImporte()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>Total</h3>
+    <h3 th:utext="${factura.getTotalCorporal()}"></h3>
+    <h4>Detalle de la factura de cuidado bucal</h4>
+    <table>
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="itembucal: ${factura.itemsBucal}">
+            <td th:text="${itembucal.producto.nombre}"></td>
+            <td th:text="${itembucal.producto.precio}"></td>
+            <td th:text="${itembucal.cantidad}"></td>
+            <td th:text="${itembucal.calcularImporte()}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>Total</h3>
+    <h3 th:utext="${factura.getTotalBucal()}"></h3>
+</head>
+<body>
+
+</body>
+</html>
