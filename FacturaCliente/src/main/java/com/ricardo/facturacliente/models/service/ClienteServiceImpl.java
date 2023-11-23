@@ -1,7 +1,11 @@
 package com.ricardo.facturacliente.models.service;
 
 import com.ricardo.facturacliente.models.dao.IClienteDao;
+import com.ricardo.facturacliente.models.dao.IFacturaDao;
+import com.ricardo.facturacliente.models.dao.IProductoDao;
 import com.ricardo.facturacliente.models.entity.Cliente;
+import com.ricardo.facturacliente.models.entity.Factura;
+import com.ricardo.facturacliente.models.entity.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,9 +16,14 @@ import java.util.List;
 
 @Service
 public class ClienteServiceImpl implements IClienteService {
+    @Autowired
+    private IProductoDao productoDao;
 
     @Autowired
     private IClienteDao clienteDao;
+
+    @Autowired
+    private IFacturaDao facturaDao;
 
     @Override
     @Transactional(readOnly = true)
@@ -45,5 +54,34 @@ public class ClienteServiceImpl implements IClienteService {
     @Transactional
     public void delete(Long id) {
         clienteDao.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public Producto findProductoById(Long id) {
+        return productoDao.findById(id).orElse(null);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Factura findFacturaById(Long id) {
+        return facturaDao.findById(id).orElse(null);
+    }
+
+    @Override
+    public void saveFactura(Factura factura) {
+        facturaDao.save(factura);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Producto> findByNombre (String term) {
+        return productoDao.findByNombreLikeIgnoreCase("%" + term + "%");
+    }
+
+    @Override
+    @Transactional
+    public void deleteFactura(Long id) {
+        facturaDao.deleteById(id);
     }
 }

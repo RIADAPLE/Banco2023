@@ -9,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
@@ -30,6 +31,11 @@ public class Cliente implements Serializable {
     @NotNull
     private Date createAt;
 
+    private String foto;
+
+    @OneToMany(mappedBy = "clientes", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Factura> facturas;
+
     public Cliente() {
     }
 
@@ -47,6 +53,14 @@ public class Cliente implements Serializable {
 
     public Long getId() {
         return id;
+    }
+
+    public List<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<Factura> facturas) {
+        this.facturas = facturas;
     }
 
     public String getNombre() {
@@ -79,6 +93,18 @@ public class Cliente implements Serializable {
 
     public void setCreateAt(Date createAt) {
         this.createAt = createAt;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
+    public void addFactura(Factura factura){
+        facturas.add(factura);
     }
 
     public static long getSerialversionuid(){

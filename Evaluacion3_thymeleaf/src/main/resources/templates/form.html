@@ -1,0 +1,118 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head" th:fragment="head">
+    <meta charset="UTF-8" />
+    <title th:text="'Spring Boot: MVC + Thymeleaf + Data JPA - ' + ${titulo}"></title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<header th:replace="layout/layout :: header"></header>
+
+<body class="bg-light">
+
+<div class="container">
+    <main>
+
+        <div class="row g-5">
+            <div class="col-md-5 col-lg-4 order-md-last">
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-primary">Your cart</span>
+                    <span class="badge bg-primary rounded-pill">3</span>
+                </h4>
+                <table th:if="${not #lists.isEmpty(cliente.pedidos)}"
+                       class="table table-bordered table-striped my-4">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>folio</th>
+                        <th>descripción</th>
+                        <th>fecha</th>
+                        <th>total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="pedido: ${cliente.pedidos}">
+                        <td th:text="${pedido.id}"></td>
+                        <td th:text="${pedido.descripcion}"></td>
+                        <td th:text="${pedido.total}"></td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+                <form class="card p-2">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Promo code">
+                        <button type="submit" class="btn btn-secondary">Redeem</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-7 col-lg-8">
+                <div th:object="${cliente}" th:remove="tag">
+                    <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                        <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+                <h4 class="mb-3">Crear cliente</h4>
+                <form th:action="@{/form}" th:object="${cliente}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="firstName" class="form-label">Nombre</label>
+                            <input type="text" th:field="*{nombre}" id="firstName" class="form-control"
+                                   th:errorclass="'form-control alert-danger'">
+                            <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="lastName" class="form-label">Apellido</label>
+                            <input th:field="*{apellido}" class="form-control"
+                                   th:errorclass="'form-control alert-danger'" id="lastName" placeholder="" value="" required>
+                            <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
+                            <input type="text" th:field="*{email}" class="form-control"
+                                   th:errorclass="'form-control alert-danger'" id="email" placeholder="you@example.com">
+                            <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="address" class="form-label">Direccion</label>
+                            <input type="text" th:field="*{direccion}" class="form-control" th:errorclass="'form-control alert-danger'" id="address" placeholder="1234 Main St" required>
+                            <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></small>
+                        </div>
+
+                    <hr class="my-4">
+
+                        <input type="submit" value="Crear Cliente" class="w-100 btn btn-primary btn-lg" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2017–2021 Company Name</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacy</a></li>
+            <li class="list-inline-item"><a href="#">Terms</a></li>
+            <li class="list-inline-item"><a href="#">Support</a></li>
+        </ul>
+    </footer>
+</div>
+
+
+<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+<script src="form-validation.js"></script>
+</body>
+</html>
